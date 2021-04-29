@@ -35,8 +35,8 @@ public class Diner {
                 right = forks[i];
                 left = forks[(i+1) % forks.length];
             } else {
-            left = forks[i];
-            right = forks[(i + 1) % forks.length];
+                left = forks[i];
+                right = forks[(i + 1) % forks.length];
             }
 
             /*
