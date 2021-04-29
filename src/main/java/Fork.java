@@ -3,7 +3,7 @@ package main.java;
 import java.util.concurrent.Semaphore;
 
 public class Fork {
-    private int id;
+    private final int id;
 
     public Fork(int id) {
         this.id = id;
@@ -19,15 +19,7 @@ public class Fork {
         semaphore.release();
     }
 
-    public boolean isFree() {
-        return semaphore.availablePermits() > 0;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

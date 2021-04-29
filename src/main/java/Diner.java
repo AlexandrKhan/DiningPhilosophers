@@ -36,9 +36,23 @@ public class Diner {
           Associate philosopher with forks
          */
         for (int i = 0; i < philosophers.size(); i++) {
-            Fork left = forks[i];
-            Fork right = forks[(i+1) % forks.length];
+            Fork left;
+            Fork right;
 
+            /*
+            Following condition solves the deadlock problem
+            Last philosopher takes RIGHT fork first, instead of LEFT like the others ->
+            Either him or the first philosopher will always be able to take other fork and eat ->
+            Then releasing his forks etc. -> no deadlock
+             */
+
+            if (i == philosophers.size() - 1) {
+                right = forks[i];
+                left = forks[(i+1) % forks.length];
+            } else {
+                left = forks[i];
+                right = forks[(i+1) % forks.length];
+            }
             philosophers.get(i).setLeftFork(left);
             philosophers.get(i).setRightFork(right);
             philosophers.get(i).start();

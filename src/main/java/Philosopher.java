@@ -27,6 +27,7 @@ public class Philosopher extends Thread {
     }
 
     private void eat() throws InterruptedException {
+        ++Diner.count;
         System.out.println("                                " + philosopherName.toUpperCase() + " IS EATING");
         Thread.sleep(ThreadLocalRandom.current().nextInt(0, 1000));
     }
@@ -38,6 +39,7 @@ public class Philosopher extends Thread {
             try {
                 think();
                 leftFork.take();
+                Thread.sleep(100);
                 System.out.println(philosopherName + " took left fork");
                 rightFork.take();
                 System.out.println(philosopherName + " took right fork");
