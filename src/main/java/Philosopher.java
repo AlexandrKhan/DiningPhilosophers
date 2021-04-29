@@ -27,20 +27,19 @@ public class Philosopher extends Thread {
     }
 
     private void eat() throws InterruptedException {
-        ++Diner.count;
         System.out.println("                                " + philosopherName.toUpperCase() + " IS EATING");
         Thread.sleep(ThreadLocalRandom.current().nextInt(0, 1000));
     }
 
-    @SuppressWarnings("InfiniteLoopStatement")
+    @SuppressWarnings({"InfiniteLoopStatement", "BusyWait"})
     @Override
     public void run() {
         while(true) {
             try {
                 think();
                 leftFork.take();
-                Thread.sleep(100);
                 System.out.println(philosopherName + " took left fork");
+                Thread.sleep(5000);
                 rightFork.take();
                 System.out.println(philosopherName + " took right fork");
                 eat();
